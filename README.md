@@ -17,38 +17,29 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-  Cofforest
+  > Cofforest
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Store your taste! Improve your home brewing skills in-relation with time.
+  > Store your taste! Improve your home brewing skills in-relation with time.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-
-  This app will record beans your ever purchased, your everyday home brewing experience buy simple clicks.
+  > This app will record beans your ever purchased, your everyday home brewing experience buy simple clicks.
 
   Cofforest will recommend best brewing style in relation to time based on your brewing record.
 
 ## Problem ##
-  > Describe the problem your product solves.
-  Simplified recording process.
-  Wake up late? Still want coffee but no time to make an awesome one?
+  > Wake up late? Still want coffee but no time to make an awesome one?
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
-  The app generates output from your past experiences, recommend you the shortest coffee making process.
+  > The app generates output from your past experiences, recommend you the shortest coffee making process.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
-  Rush morning will no longer stop you from home-brewed coffee.
+  > Rush morning will no longer stop you from home-brewed coffee.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
-  Start your browser!
-  Simple clicks!
-  Run to work!
+  > Start your browser!
+    Simple clicks!
+    Run to work!
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
