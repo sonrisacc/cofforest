@@ -22,6 +22,7 @@ header {
   padding: 5px 15px;
 }
 
+
 #middle {
   width: 294px; /* Account for margins + border values */
   float: left;
@@ -111,6 +112,12 @@ MEDIA QUERIES
 #content {
   background: #f8f8f8;
 }
+
+.bean-list-entry{
+  cursor:  pointer;
+}
+
+
 #sidebar {
   background: #f0efef;
 }

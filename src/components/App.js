@@ -24,19 +24,23 @@ class App extends React.Component {
       .catch(err => console.log(error));
 
 
-
+    //console.log('i am proprs', this.props);
     console.log('did mount');
   };
 
   componentWillMount(){
     console.log(this.state.test);
-    console.log(this.props);
+
+  };
+
+  handleBeanListEntryClick(Bean) {
+    console.log('clicked');
   };
 
   render() {
     return(
       <div className="App">
-            <BeanList beans={this.state.test} />
+            <BeanList beans={this.state.test} clickBean={this.handleBeanListEntryClick.bind(this)}/>
       </div>
     );
   }
