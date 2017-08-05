@@ -22684,9 +22684,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
-	        this.props.coffeeBeans.map(function (bean) {
-	          return _react2.default.createElement(_BeanList2.default, bean);
-	        })
+	        _react2.default.createElement(_BeanList2.default, { beans: this.props })
 	      );
 	    }
 	  }]);
@@ -22708,7 +22706,7 @@
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22718,21 +22716,22 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _BeanListEntry = __webpack_require__(/*! ./BeanListEntry */ 187);
+	
+	var _BeanListEntry2 = _interopRequireDefault(_BeanListEntry);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var BeanList = function BeanList(bean) {
+	var BeanList = function BeanList(props) {
 	  return _react2.default.createElement(
-	    "div",
-	    { className: "BeanList" },
+	    'div',
+	    { className: 'bean-list' },
 	    _react2.default.createElement(
-	      "div",
-	      { className: "bean-name" },
-	      bean.name
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "bean-region" },
-	      bean.region
+	      'p',
+	      null,
+	      props.beans.coffeeBeans.map(function (bean) {
+	        return _react2.default.createElement(_BeanListEntry2.default, { bean: bean });
+	      })
 	    )
 	  );
 	};
@@ -22766,6 +22765,52 @@
 	}];
 	
 	exports.default = BeanData;
+
+/***/ },
+/* 187 */
+/*!*****************************************!*\
+  !*** ./src/components/BeanListEntry.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var BeanListEntry = function BeanListEntry(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "bean-list-entry" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "bean-name" },
+	      _react2.default.createElement(
+	        "h2",
+	        null,
+	        props.bean.name
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "bean-region" },
+	      _react2.default.createElement(
+	        "h3",
+	        null,
+	        props.bean.region
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = BeanListEntry;
 
 /***/ }
 /******/ ]);

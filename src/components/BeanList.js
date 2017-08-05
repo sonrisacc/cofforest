@@ -1,13 +1,11 @@
 import React from 'react';
+import BeanListEntry from './BeanListEntry';
 
-const BeanList = (bean) => (
-  <div className="BeanList">
-    <div className="bean-name">
-      {bean.name}
-    </div>
-    <div className="bean-region">
-      {bean.region}
-    </div>
+
+const BeanList = (props) => (
+  <div className="bean-list">
+     <p>{props.beans.coffeeBeans.map((bean) =>
+        <BeanListEntry bean={bean} />)}</p>
   </div>
 );
 

@@ -20,9 +20,7 @@ class App extends React.Component {
   render() {
     return(
       <div className="App">
-          {this.props.coffeeBeans.map((bean) =>
-            <BeanList {...bean} />
-          )}
+            <BeanList beans={this.props} />
       </div>
     );
   }
