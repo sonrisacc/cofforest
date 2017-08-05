@@ -4,7 +4,6 @@ import BeanListEntry from './BeanListEntry';
 
 const BeanList = (props) => (
   <div className="bean-list">
-     {console.log('beanlist props',props)}
      <div>{props.beans.coffeeBeans.map((bean, index) =>
         <BeanListEntry
           key={index}
@@ -16,3 +15,6 @@ const BeanList = (props) => (
 );
 
 export default BeanList;
+
+
+// {console.log('beanlist props',props)}

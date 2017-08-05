@@ -22712,7 +22712,7 @@
 	      var _this2 = this;
 	
 	      _axios2.default.get('/main').then(function (res) {
-	        console.log('me', res);
+	        //console.log('didMoutRes',res);
 	        _this2.setState({
 	          test: { coffeeBeans: res.data.test }
 	        });
@@ -22721,12 +22721,13 @@
 	      });
 	
 	      //console.log('i am proprs', this.props);
-	      console.log('did mount');
+	      //console.log('did mount');
 	    }
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      console.log(this.state.test);
+	      //console.log(this.state.test);
+	
 	    }
 	  }, {
 	    key: 'handleBeanListEntryClick',
@@ -22781,7 +22782,6 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'bean-list' },
-	    console.log('beanlist props', props),
 	    _react2.default.createElement(
 	      'div',
 	      null,
@@ -22797,6 +22797,8 @@
 	};
 	
 	exports.default = BeanList;
+	
+	// {console.log('beanlist props',props)}
 
 /***/ },
 /* 187 */
@@ -22805,7 +22807,7 @@
   \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22819,43 +22821,44 @@
 	
 	var BeanListEntry = function BeanListEntry(props) {
 	  return _react2.default.createElement(
-	    'div',
+	    "div",
 	    {
-	      className: 'bean-list-entry',
+	      className: "bean-list-entry",
 	      onClick: function onClick() {
 	        return props.clickBean();
 	      }
 	    },
-	    console.log('beanEntry props', props),
 	    _react2.default.createElement(
-	      'div',
-	      { id: 'content', className: 'bean-name' },
+	      "div",
+	      { id: "content", className: "bean-name" },
 	      _react2.default.createElement(
-	        'h2',
-	        { className: 'iname' },
+	        "h2",
+	        { className: "iname" },
 	        props.bean.name
 	      ),
 	      _react2.default.createElement(
-	        'h3',
-	        { className: 'iregion' },
+	        "h3",
+	        { className: "iregion" },
 	        props.bean.region
 	      ),
 	      _react2.default.createElement(
-	        'h4',
-	        { className: 'idescription' },
-	        ' ',
+	        "h4",
+	        { className: "idescription" },
+	        " ",
 	        props.bean.description
 	      ),
 	      _react2.default.createElement(
-	        'p',
-	        { className: 'iparagraph' },
-	        '"hey"'
+	        "p",
+	        { className: "iparagraph" },
+	        "\"hey\""
 	      )
 	    )
 	  );
 	};
 	
 	exports.default = BeanListEntry;
+	
+	// {console.log('beanEntry props', props)}
 
 /***/ },
 /* 188 */

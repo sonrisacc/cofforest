@@ -5,7 +5,6 @@ const BeanListEntry = (props) => (
     className="bean-list-entry"
     onClick={() => props.clickBean()}
     >
-    {console.log('beanEntry props', props)}
     <div id="content" className="bean-name">
       <h2 className="iname">{props.bean.name}</h2>
       <h3 className="iregion">{props.bean.region}</h3>
@@ -17,3 +16,6 @@ const BeanListEntry = (props) => (
 );
 
 export default BeanListEntry;
+
+
+// {console.log('beanEntry props', props)}

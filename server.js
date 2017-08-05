@@ -9,7 +9,8 @@ const server = express();
 
 server.set('view engine', 'ejs');
 
-server.get('/', (req, res) => {
+server.get(['/', '/bean/:beanId'], (req, res) => {
+
   res.render('index', {
     content: 'Welcome to <em> Cofforest </em>!'
   });
@@ -19,9 +20,6 @@ server.get('/main', (req, res) => {
   res.send({test:data})
 });
 
-server.get('/brew', (req, res) => {
-  res.send({test:data})
-});
 
 
 //server.use('/api/router', router);

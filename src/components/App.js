@@ -16,7 +16,7 @@ class App extends React.Component {
   componentDidMount(){
     axios.get('/main')
       .then(res => {
-       console.log('me',res);
+      //console.log('didMoutRes',res);
         this.setState({
           test: {coffeeBeans: res.data.test}
         });
@@ -25,11 +25,11 @@ class App extends React.Component {
 
 
     //console.log('i am proprs', this.props);
-    console.log('did mount');
+    //console.log('did mount');
   };
 
   componentWillMount(){
-    console.log(this.state.test);
+    //console.log(this.state.test);
 
   };
 
