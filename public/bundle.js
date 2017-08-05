@@ -67,7 +67,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { coffeeBeans: _exampleBeanData2.default }), document.getElementById('beans'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { coffeeBeans: _exampleBeanData2.default }), document.getElementById('magicBeans'));
 
 /***/ },
 /* 1 */
@@ -22730,7 +22730,7 @@
 	      'div',
 	      null,
 	      props.beans.coffeeBeans.map(function (bean, index) {
-	        return _react2.default.createElement(_BeanListEntry2.default, { key: index, bean: bean });
+	        return _react2.default.createElement(_BeanListEntry2.default, { key: index, bean: bean, i: index });
 	      })
 	    )
 	  );
@@ -22791,20 +22791,27 @@
 	    { className: "bean-list-entry" },
 	    _react2.default.createElement(
 	      "div",
-	      { className: "bean-name" },
+	      { id: "content", className: "bean-name" },
 	      _react2.default.createElement(
 	        "h2",
-	        null,
+	        { className: "iname" },
 	        props.bean.name
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "bean-region" },
+	      ),
 	      _react2.default.createElement(
 	        "h3",
-	        null,
+	        { className: "iregion" },
 	        props.bean.region
+	      ),
+	      _react2.default.createElement(
+	        "h4",
+	        { className: "idescription" },
+	        " ",
+	        props.bean.description
+	      ),
+	      _react2.default.createElement(
+	        "p",
+	        { className: "iparagraph" },
+	        "\"hey\""
 	      )
 	    )
 	  );

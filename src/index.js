@@ -6,7 +6,7 @@ import App from './components/App';
 
 ReactDOM.render(
    <App coffeeBeans={BeanData}/>,
-   document.getElementById('beans')
+   document.getElementById('magicBeans')
 );
 
 
