@@ -1,26 +1,33 @@
 
 import React from 'react';
 import BeanList from './BeanList';
+import BeanData from '../exampleBeanData'
 
 class App extends React.Component {
   constructor({props}){
     super(props);
-    this.state = {test: 'beans!'};
+    this.state = {
+      test: {coffeeBeans:[]}
+    };
 
   };
 
   componentDidMount(){
+    this.setState({
+      test: {coffeeBeans: BeanData}
+    })
     console.log('did mount');
   };
 
   componentWillMount(){
-    console.log('willMount');
+    console.log(this.state.test);
+    console.log(this.props);
   };
 
   render() {
     return(
       <div className="App">
-            <BeanList beans={this.props} />
+            <BeanList beans={this.state.test} />
       </div>
     );
   }

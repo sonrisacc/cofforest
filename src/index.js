@@ -5,7 +5,7 @@ import BeanData from './exampleBeanData'
 import App from './components/App';
 
 ReactDOM.render(
-   <App coffeeBeans={BeanData}/>,
+   <App coofeeBeans={[]}/>,
    document.getElementById('magicBeans')
 );
 

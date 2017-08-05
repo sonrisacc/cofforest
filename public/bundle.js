@@ -57,17 +57,17 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _exampleBeanData = __webpack_require__(/*! ./exampleBeanData */ 186);
+	var _exampleBeanData = __webpack_require__(/*! ./exampleBeanData */ 184);
 	
 	var _exampleBeanData2 = _interopRequireDefault(_exampleBeanData);
 	
-	var _App = __webpack_require__(/*! ./components/App */ 184);
+	var _App = __webpack_require__(/*! ./components/App */ 185);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { coffeeBeans: _exampleBeanData2.default }), document.getElementById('magicBeans'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { coofeeBeans: [] }), document.getElementById('magicBeans'));
 
 /***/ },
 /* 1 */
@@ -22624,6 +22624,34 @@
 
 /***/ },
 /* 184 */
+/*!********************************!*\
+  !*** ./src/exampleBeanData.js ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var BeanData = [{
+	  name: 'Sumatra',
+	  region: 'Indonesia',
+	  description: 'Dark roast'
+	}, {
+	  name: 'Costa Rica',
+	  region: 'Costa Rica',
+	  description: 'Dark roast'
+	}, {
+	  name: 'Kenya',
+	  region: 'Indonesia',
+	  description: 'Dark roast'
+	}];
+	
+	exports.default = BeanData;
+
+/***/ },
+/* 185 */
 /*!*******************************!*\
   !*** ./src/components/App.js ***!
   \*******************************/
@@ -22641,9 +22669,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BeanList = __webpack_require__(/*! ./BeanList */ 185);
+	var _BeanList = __webpack_require__(/*! ./BeanList */ 186);
 	
 	var _BeanList2 = _interopRequireDefault(_BeanList);
+	
+	var _exampleBeanData = __webpack_require__(/*! ../exampleBeanData */ 184);
+	
+	var _exampleBeanData2 = _interopRequireDefault(_exampleBeanData);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22663,7 +22695,9 @@
 	
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
-	    _this.state = { test: 'beans!' };
+	    _this.state = {
+	      test: { coffeeBeans: [] }
+	    };
 	
 	    return _this;
 	  }
@@ -22671,12 +22705,16 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      this.setState({
+	        test: { coffeeBeans: _exampleBeanData2.default }
+	      });
 	      console.log('did mount');
 	    }
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      console.log('willMount');
+	      console.log(this.state.test);
+	      console.log(this.props);
 	    }
 	  }, {
 	    key: 'render',
@@ -22684,7 +22722,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
-	        _react2.default.createElement(_BeanList2.default, { beans: this.props })
+	        _react2.default.createElement(_BeanList2.default, { beans: this.state.test })
 	      );
 	    }
 	  }]);
@@ -22700,7 +22738,7 @@
 	exports.default = App;
 
 /***/ },
-/* 185 */
+/* 186 */
 /*!************************************!*\
   !*** ./src/components/BeanList.js ***!
   \************************************/
@@ -22730,41 +22768,13 @@
 	      'div',
 	      null,
 	      props.beans.coffeeBeans.map(function (bean, index) {
-	        return _react2.default.createElement(_BeanListEntry2.default, { key: index, bean: bean, i: index });
+	        return _react2.default.createElement(_BeanListEntry2.default, { key: index, bean: bean });
 	      })
 	    )
 	  );
 	};
 	
 	exports.default = BeanList;
-
-/***/ },
-/* 186 */
-/*!********************************!*\
-  !*** ./src/exampleBeanData.js ***!
-  \********************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var BeanData = [{
-	  name: 'Sumatra',
-	  region: 'Indonesia',
-	  description: 'Dark roast'
-	}, {
-	  name: 'Costa Rica',
-	  region: 'Costa Rica',
-	  description: 'Dark roast'
-	}, {
-	  name: 'Kenya',
-	  region: 'Indonesia',
-	  description: 'Dark roast'
-	}];
-	
-	exports.default = BeanData;
 
 /***/ },
 /* 187 */
