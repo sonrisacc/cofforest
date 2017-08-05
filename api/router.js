@@ -1,15 +1,12 @@
 import express from 'express';
+//import data from '../src/exampleBeanData';
+
 const router = express.Router();
 
 
-
-
-
-router.get('/about', (req, res) => {
-  res.render('about');
+router.get('/main', (req, res) => {
+  res.send('hey');
 });
 
-router.get('/test', (req, res) => {
-  res.render('test');
-});
+
 export default router;

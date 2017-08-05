@@ -1,6 +1,7 @@
 import config from './config';
 import express from 'express';
-import utilRouter from './api/router';
+// import router from './api/router';
+import data from './src/exampleBeanData';
 
 
 const server = express();
@@ -13,18 +14,18 @@ server.get('/', (req, res) => {
   });
 });
 
+server.get('/main', (req, res) => {
+  res.send({test:data})
+});
 
-server.use('./api/router', utilRouter);
+
+//server.use('/api/router', router);
 server.use(express.static('public'));
+
 
 server.listen(config.port, () => {
   console.log('Listening on http://' + config.ip + ':' + config.port);
 });
-
-
-
-
-
 
 
 
