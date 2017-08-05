@@ -4,8 +4,8 @@ import BeanListEntry from './BeanListEntry';
 
 const BeanList = (props) => (
   <div className="bean-list">
-     <p>{props.beans.coffeeBeans.map((bean) =>
-        <BeanListEntry bean={bean} />)}</p>
+     <div>{props.beans.coffeeBeans.map((bean, index) =>
+        <BeanListEntry key={index} bean={bean} />)}</div>
   </div>
 );
 

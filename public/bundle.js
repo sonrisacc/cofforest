@@ -22727,10 +22727,10 @@
 	    'div',
 	    { className: 'bean-list' },
 	    _react2.default.createElement(
-	      'p',
+	      'div',
 	      null,
-	      props.beans.coffeeBeans.map(function (bean) {
-	        return _react2.default.createElement(_BeanListEntry2.default, { bean: bean });
+	      props.beans.coffeeBeans.map(function (bean, index) {
+	        return _react2.default.createElement(_BeanListEntry2.default, { key: index, bean: bean });
 	      })
 	    )
 	  );
