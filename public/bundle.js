@@ -57,13 +57,17 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _exampleBeanData = __webpack_require__(/*! ./exampleBeanData */ 186);
+	
+	var _exampleBeanData2 = _interopRequireDefault(_exampleBeanData);
+	
 	var _App = __webpack_require__(/*! ./components/App */ 184);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { coffeeBeans: 'Hello my love beans' }), document.getElementById('beans'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { coffeeBeans: _exampleBeanData2.default }), document.getElementById('beans'));
 
 /***/ },
 /* 1 */
@@ -22637,6 +22641,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _BeanList = __webpack_require__(/*! ./BeanList */ 185);
+	
+	var _BeanList2 = _interopRequireDefault(_BeanList);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22674,9 +22682,11 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h2',
-	        null,
-	        this.state.test
+	        'div',
+	        { className: 'App' },
+	        this.props.coffeeBeans.map(function (bean) {
+	          return _react2.default.createElement(_BeanList2.default, bean);
+	        })
 	      );
 	    }
 	  }]);
@@ -22690,6 +22700,72 @@
 	// `var` declarations will only exist globally where explicitly defined
 	
 	exports.default = App;
+
+/***/ },
+/* 185 */
+/*!************************************!*\
+  !*** ./src/components/BeanList.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var BeanList = function BeanList(bean) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "BeanList" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "bean-name" },
+	      bean.name
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "bean-region" },
+	      bean.region
+	    )
+	  );
+	};
+	
+	exports.default = BeanList;
+
+/***/ },
+/* 186 */
+/*!********************************!*\
+  !*** ./src/exampleBeanData.js ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var BeanData = [{
+	  name: 'Sumatra',
+	  region: 'Indonesia',
+	  description: 'Dark roast'
+	}, {
+	  name: 'Costa Rica',
+	  region: 'Costa Rica',
+	  description: 'Dark roast'
+	}, {
+	  name: 'Kenya',
+	  region: 'Indonesia',
+	  description: 'Dark roast'
+	}];
+	
+	exports.default = BeanData;
 
 /***/ }
 /******/ ]);

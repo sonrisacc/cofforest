@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import BeanList from './BeanList';
 
 class App extends React.Component {
   constructor({props}){
@@ -19,9 +19,11 @@ class App extends React.Component {
 
   render() {
     return(
-      <h2>
-         {this.state.test}
-      </h2>
+      <div className="App">
+          {this.props.coffeeBeans.map((bean) =>
+            <BeanList {...bean} />
+          )}
+      </div>
     );
   }
 };
