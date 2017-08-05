@@ -1,7 +1,8 @@
 
 import React from 'react';
 import BeanList from './BeanList';
-import BeanData from '../exampleBeanData'
+import axios from 'axios';
+import beanData from '../exampleBeanData';
 
 class App extends React.Component {
   constructor({props}){
@@ -13,9 +14,17 @@ class App extends React.Component {
   };
 
   componentDidMount(){
-    this.setState({
-      test: {coffeeBeans: BeanData}
-    })
+    axios.get('/main')
+      .then(res => {
+       console.log('me',res);
+        this.setState({
+          test: {coffeeBeans: res.data.test}
+        });
+      })
+      .catch(err => console.log(error));
+
+
+
     console.log('did mount');
   };
 

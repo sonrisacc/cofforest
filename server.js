@@ -1,6 +1,7 @@
 import config from './config';
 import express from 'express';
-// import router from './api/router';
+//import router from './api/router';
+
 import data from './src/exampleBeanData';
 
 
@@ -15,6 +16,10 @@ server.get('/', (req, res) => {
 });
 
 server.get('/main', (req, res) => {
+  res.send({test:data})
+});
+
+server.get('/brew', (req, res) => {
   res.send({test:data})
 });
 

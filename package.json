@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/sonrisacc/cofforest#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "ejs": "^2.5.7",
     "express": "^4.15.3",
     "mongodb": "^2.2.30",
