@@ -67,7 +67,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('magicBeans'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { initialBeans: [] }), document.getElementById('magicBeans'));
 
 /***/ },
 /* 1 */
@@ -22692,15 +22692,14 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 	
-	  function App(_ref) {
-	    var props = _ref.props;
-	
+	  function App(props) {
 	    _classCallCheck(this, App);
 	
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
 	    _this.state = {
-	      test: { coffeeBeans: [] }
+	      test: { coffeeBeans: [] },
+	      beans: _this.props.initialBeans
 	    };
 	
 	    return _this;
@@ -22712,7 +22711,7 @@
 	      var _this2 = this;
 	
 	      _axios2.default.get('/main').then(function (res) {
-	        //console.log('didMoutRes',res);
+	        console.log('didMoutRes', res.data);
 	        _this2.setState({
 	          test: { coffeeBeans: res.data.test }
 	        });
@@ -22732,14 +22731,12 @@
 	  }, {
 	    key: 'handleBeanListEntryClick',
 	    value: function handleBeanListEntryClick(Bean) {
-	      var _this3 = this;
-	
 	      console.log('clicked');
 	      _axios2.default.send('/main').then(function (res) {
-	        //console.log('didMoutRes',res);
-	        _this3.setState({
-	          test: { coffeeBeans: res.data.test }
-	        });
+	        console.log('didMoutRes', res);
+	        // this.setState({
+	        //   test: {coffeeBeans: res.data.test}
+	        // });
 	      }).catch(function (err) {
 	        return console.log(error);
 	      });
@@ -22788,18 +22785,20 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var BeanList = function BeanList(props) {
+	var BeanList = function BeanList(_ref) {
+	  var beans = _ref.beans,
+	      clickBean = _ref.clickBean;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'bean-list' },
 	    _react2.default.createElement(
 	      'div',
 	      null,
-	      props.beans.coffeeBeans.map(function (bean, index) {
+	      beans.coffeeBeans.map(function (bean, index) {
 	        return _react2.default.createElement(_BeanListEntry2.default, {
 	          key: index,
 	          bean: bean,
-	          clickBean: props.clickBean
+	          clickBean: clickBean
 	        });
 	      })
 	    )
@@ -22829,13 +22828,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var BeanListEntry = function BeanListEntry(props) {
+	var BeanListEntry = function BeanListEntry(_ref) {
+	  var bean = _ref.bean,
+	      clickBean = _ref.clickBean;
 	  return _react2.default.createElement(
 	    "div",
 	    {
 	      className: "bean-list-entry",
 	      onClick: function onClick() {
-	        return props.clickBean();
+	        return clickBean();
 	      }
 	    },
 	    _react2.default.createElement(
@@ -22844,18 +22845,18 @@
 	      _react2.default.createElement(
 	        "h2",
 	        { className: "iname" },
-	        props.bean.name
+	        bean.name
 	      ),
 	      _react2.default.createElement(
 	        "h3",
 	        { className: "iregion" },
-	        props.bean.region
+	        bean.region
 	      ),
 	      _react2.default.createElement(
 	        "h4",
 	        { className: "idescription" },
 	        " ",
-	        props.bean.description
+	        bean.description
 	      ),
 	      _react2.default.createElement(
 	        "p",

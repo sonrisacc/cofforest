@@ -1,14 +1,14 @@
 import React from 'react';
 
-const BeanListEntry = (props) => (
+const BeanListEntry = ({bean, clickBean}) => (
   <div
     className="bean-list-entry"
-    onClick={() => props.clickBean()}
+    onClick={() => clickBean()}
     >
     <div id="content" className="bean-name">
-      <h2 className="iname">{props.bean.name}</h2>
-      <h3 className="iregion">{props.bean.region}</h3>
-      <h4 className="idescription"> {props.bean.description}</h4>
+      <h2 className="iname">{bean.name}</h2>
+      <h3 className="iregion">{bean.region}</h3>
+      <h4 className="idescription"> {bean.description}</h4>
       <p className="iparagraph">"hey"</p>
     </div>
 

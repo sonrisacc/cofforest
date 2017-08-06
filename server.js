@@ -3,7 +3,7 @@ import express from 'express';
 //import router from './api/router';
 
 import http from 'http';
-import data from './src/exampleBeanData';
+import beans from './src/exampleBeanData';
 import urlParser from 'url';
 
 
@@ -15,18 +15,24 @@ const server = express();
 server.set('view engine', 'ejs');
 
 
-import requestHandler from './requestHandler';
+import serverRender from './requestHandler';
 
 
 server.get(['/', '/bean/:beanId'], (req, res) => {
+  serverRender()
+  .then(content => {
+    res.render('index', {
+      content
+    });
+  })
+  .catch(console.error)
 
-  res.render('index', {
-    content: 'Welcome to <em> Cofforest </em>!'
-  });
 });
 
-server.get('/main', (req, res) => {
-  res.send({test:data})
+//['/', '/bean/:beanId']
+
+server.get(['/main', '/bean/:beanId'], (req, res) => {
+  res.send({test:beans})
 });
 
 

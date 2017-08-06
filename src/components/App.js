@@ -5,18 +5,20 @@ import axios from 'axios';
 import beanData from '../exampleBeanData';
 
 class App extends React.Component {
-  constructor({props}){
+  constructor(props){
     super(props);
     this.state = {
-      test: {coffeeBeans:[]}
+      test: {coffeeBeans:[]},
+      beans: this.props.initialBeans
     };
 
   };
 
   componentDidMount(){
+
     axios.get('/main')
       .then(res => {
-      //console.log('didMoutRes',res);
+      console.log('didMoutRes',res.data);
         this.setState({
           test: {coffeeBeans: res.data.test}
         });
@@ -37,10 +39,10 @@ class App extends React.Component {
     console.log('clicked');
      axios.send('/main')
       .then(res => {
-      //console.log('didMoutRes',res);
-        this.setState({
-          test: {coffeeBeans: res.data.test}
-        });
+      console.log('didMoutRes',res);
+        // this.setState({
+        //   test: {coffeeBeans: res.data.test}
+        // });
       })
       .catch(err => console.log(error));
 

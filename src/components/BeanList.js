@@ -2,13 +2,13 @@ import React from 'react';
 import BeanListEntry from './BeanListEntry';
 
 
-const BeanList = (props) => (
+const BeanList = ({beans, clickBean}) => (
   <div className="bean-list">
-     <div>{props.beans.coffeeBeans.map((bean, index) =>
+     <div>{beans.coffeeBeans.map((bean, index) =>
         <BeanListEntry
           key={index}
           bean={bean}
-          clickBean={props.clickBean}
+          clickBean={clickBean}
           />)}
      </div>
   </div>
