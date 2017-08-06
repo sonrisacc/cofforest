@@ -20,9 +20,10 @@ import serverRender from './requestHandler';
 
 server.get(['/', '/bean/:beanId'], (req, res) => {
   serverRender()
-  .then(content => {
+  .then(({initialBeanList, initialData}) => {
     res.render('index', {
-      content
+      initialBeanList,
+      initialData
     });
   })
   .catch(console.error)
@@ -31,7 +32,7 @@ server.get(['/', '/bean/:beanId'], (req, res) => {
 
 //['/', '/bean/:beanId']
 
-server.get(['/main', '/bean/:beanId'], (req, res) => {
+server.get('/main', (req, res) => {
   res.send({test:beans})
 });
 

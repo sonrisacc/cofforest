@@ -5,7 +5,7 @@ import BeanData from './exampleBeanData'
 import App from './components/App';
 
 ReactDOM.render(
-   <App initialBeans={[]}/>,
+   <App initialBeans={window.initialData.test}/>,
    document.getElementById('magicBeans')
 );
 

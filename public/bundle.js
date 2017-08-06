@@ -67,7 +67,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { initialBeans: [] }), document.getElementById('magicBeans'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { initialBeans: window.initialData.test }), document.getElementById('magicBeans'));
 
 /***/ },
 /* 1 */
@@ -22698,7 +22698,6 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
 	    _this.state = {
-	      test: { coffeeBeans: [] },
 	      beans: _this.props.initialBeans
 	    };
 	
@@ -22708,16 +22707,6 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      _axios2.default.get('/main').then(function (res) {
-	        console.log('didMoutRes', res.data);
-	        _this2.setState({
-	          test: { coffeeBeans: res.data.test }
-	        });
-	      }).catch(function (err) {
-	        return console.log(error);
-	      });
 	
 	      //console.log('i am proprs', this.props);
 	      //console.log('did mount');
@@ -22732,14 +22721,6 @@
 	    key: 'handleBeanListEntryClick',
 	    value: function handleBeanListEntryClick(Bean) {
 	      console.log('clicked');
-	      _axios2.default.send('/main').then(function (res) {
-	        console.log('didMoutRes', res);
-	        // this.setState({
-	        //   test: {coffeeBeans: res.data.test}
-	        // });
-	      }).catch(function (err) {
-	        return console.log(error);
-	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -22747,7 +22728,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
-	        _react2.default.createElement(_BeanList2.default, { beans: this.state.test, clickBean: this.handleBeanListEntryClick.bind(this) })
+	        _react2.default.createElement(_BeanList2.default, { beans: this.state.beans, clickBean: this.handleBeanListEntryClick.bind(this) })
 	      );
 	    }
 	  }]);
@@ -22794,7 +22775,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      null,
-	      beans.coffeeBeans.map(function (bean, index) {
+	      beans.map(function (bean, index) {
 	        return _react2.default.createElement(_BeanListEntry2.default, {
 	          key: index,
 	          bean: bean,

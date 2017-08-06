@@ -12,9 +12,13 @@ const serverRender = () =>
   axios.get(`${config.serverUrl}/main`)
     .then(res => {
       console.log('requestHandler res data', res.data);
-      return ReactDOMServer.renderToString(
-        <App initialBeans={res.data.test}/>
-      );
+      return {
+        initialBeanList: ReactDOMServer.renderToString(
+            <App initialBeans={res.data.test}/>
+          ),
+        initialData: res.data
+
+     }
 
   });
 

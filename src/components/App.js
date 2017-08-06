@@ -8,23 +8,12 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      test: {coffeeBeans:[]},
       beans: this.props.initialBeans
     };
 
   };
 
   componentDidMount(){
-
-    axios.get('/main')
-      .then(res => {
-      console.log('didMoutRes',res.data);
-        this.setState({
-          test: {coffeeBeans: res.data.test}
-        });
-      })
-      .catch(err => console.log(error));
-
 
     //console.log('i am proprs', this.props);
     //console.log('did mount');
@@ -37,21 +26,13 @@ class App extends React.Component {
 
   handleBeanListEntryClick(Bean) {
     console.log('clicked');
-     axios.send('/main')
-      .then(res => {
-      console.log('didMoutRes',res);
-        // this.setState({
-        //   test: {coffeeBeans: res.data.test}
-        // });
-      })
-      .catch(err => console.log(error));
 
   };
 
   render() {
     return(
       <div className="App">
-            <BeanList beans={this.state.test} clickBean={this.handleBeanListEntryClick.bind(this)}/>
+          <BeanList beans={this.state.beans} clickBean={this.handleBeanListEntryClick.bind(this)}/>
       </div>
     );
   }

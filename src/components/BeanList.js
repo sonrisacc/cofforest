@@ -4,7 +4,7 @@ import BeanListEntry from './BeanListEntry';
 
 const BeanList = ({beans, clickBean}) => (
   <div className="bean-list">
-     <div>{beans.coffeeBeans.map((bean, index) =>
+     <div>{beans.map((bean, index) =>
         <BeanListEntry
           key={index}
           bean={bean}

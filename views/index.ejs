@@ -1,20 +1,15 @@
+<script type="text/javascript">
+  window.initialData = <%- JSON.stringify(initialData) -%>
+</script>
+
+
 <%- include('header') -%>
   <div id="magicBeans">
 
     <section id="content">
-      <h2>1st Content Area</h2>
-      <p>bean</p>
+      <%- initialBeanList -%>
     </section>
 
-    <section id="middle">
-      <h2>2nd Content Area</h2>
-      <p>bean 1</p>
-    </section>
-
-    <aside id="sidebar">
-      <h2>3rd Content Area</h2>
-      <p>bean 2</p>
-    </aside>
 
   </div>
 
