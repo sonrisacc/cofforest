@@ -2,12 +2,21 @@ import config from './config';
 import express from 'express';
 //import router from './api/router';
 
+import http from 'http';
 import data from './src/exampleBeanData';
+import urlParser from 'url';
+
 
 
 const server = express();
 
+
+
 server.set('view engine', 'ejs');
+
+
+import requestHandler from './requestHandler';
+
 
 server.get(['/', '/bean/:beanId'], (req, res) => {
 
@@ -26,7 +35,7 @@ server.get('/main', (req, res) => {
 server.use(express.static('public'));
 
 
-server.listen(config.port, () => {
+server.listen(config.port, config.ip, () => {
   console.log('Listening on http://' + config.ip + ':' + config.port);
 });
 

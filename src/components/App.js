@@ -35,6 +35,15 @@ class App extends React.Component {
 
   handleBeanListEntryClick(Bean) {
     console.log('clicked');
+     axios.send('/main')
+      .then(res => {
+      //console.log('didMoutRes',res);
+        this.setState({
+          test: {coffeeBeans: res.data.test}
+        });
+      })
+      .catch(err => console.log(error));
+
   };
 
   render() {

@@ -22732,7 +22732,17 @@
 	  }, {
 	    key: 'handleBeanListEntryClick',
 	    value: function handleBeanListEntryClick(Bean) {
+	      var _this3 = this;
+	
 	      console.log('clicked');
+	      _axios2.default.send('/main').then(function (res) {
+	        //console.log('didMoutRes',res);
+	        _this3.setState({
+	          test: { coffeeBeans: res.data.test }
+	        });
+	      }).catch(function (err) {
+	        return console.log(error);
+	      });
 	    }
 	  }, {
 	    key: 'render',
