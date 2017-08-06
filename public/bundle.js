@@ -22689,6 +22689,10 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var pushState = function pushState(obj, url) {
+	  return window.history.pushState(obj, '', url);
+	};
+	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 	
@@ -22708,20 +22712,25 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      //console.log('i am proprs', this.props);
+	      console.log('i am proprs', this.props);
 	      //console.log('did mount');
 	    }
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      //console.log(this.state.test);
-	
+	    }
+	  }, {
+	    key: 'fetchBean',
+	    value: function fetchBean(beanName) {
+	      pushState({ currentBeanName: beanName }, '/bean/' + beanName);
 	    }
 	  }, {
 	    key: 'handleBeanListEntryClick',
 	    value: function handleBeanListEntryClick(selectBean) {
-	      this.setState({ currentBean: selectBean });
-	      console.log('after click', selectBean.name);
+	      //this.setState({currentBean: selectBean});
+	      this.fetchBean(selectBean);
+	      console.log('after click', selectBean);
 	    }
 	  }, {
 	    key: 'render',
@@ -22820,7 +22829,7 @@
 	    {
 	      className: "bean-list-entry",
 	      onClick: function onClick() {
-	        return clickBean(bean);
+	        return clickBean(bean.name);
 	      }
 	    },
 	    _react2.default.createElement(

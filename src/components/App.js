@@ -4,6 +4,9 @@ import BeanList from './BeanList';
 import axios from 'axios';
 import beanData from '../exampleBeanData';
 
+const pushState = (obj, url) =>
+  window.history.pushState(obj, '', url);
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -15,18 +18,25 @@ class App extends React.Component {
   };
 
   componentDidMount(){
-    //console.log('i am proprs', this.props);
+    console.log('i am proprs', this.props);
     //console.log('did mount');
   };
 
   componentWillMount(){
     //console.log(this.state.test);
-
   };
 
+  fetchBean(beanName){
+    pushState(
+      {currentBeanName: beanName},
+      `/bean/${beanName}`
+    );
+  }
+
   handleBeanListEntryClick(selectBean) {
-    this.setState({currentBean: selectBean});
-    console.log('after click', selectBean.name)
+    //this.setState({currentBean: selectBean});
+    this.fetchBean(selectBean);
+    console.log('after click', selectBean)
   };
 
   render() {

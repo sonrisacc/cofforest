@@ -3,7 +3,7 @@ import React from 'react';
 const BeanListEntry = ({bean, clickBean}) => (
   <div
     className="bean-list-entry"
-    onClick={() => clickBean(bean)}
+    onClick={() => clickBean(bean.name)}
     >
     <div id="content" className="bean-name">
       <h2 className="iname">{bean.name}</h2>
