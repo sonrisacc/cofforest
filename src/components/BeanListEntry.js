@@ -3,7 +3,7 @@ import React from 'react';
 const BeanListEntry = ({bean, clickBean}) => (
   <div
     className="bean-list-entry"
-    onClick={() => clickBean()}
+    onClick={() => clickBean(bean)}
     >
     <div id="content" className="bean-name">
       <h2 className="iname">{bean.name}</h2>
@@ -18,4 +18,4 @@ const BeanListEntry = ({bean, clickBean}) => (
 export default BeanListEntry;
 
 
-// {console.log('beanEntry props', props)}
+// {console.log('beanEntry props', props)}3

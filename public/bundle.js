@@ -22698,7 +22698,8 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
 	    _this.state = {
-	      beans: _this.props.initialBeans
+	      beans: _this.props.initialBeans,
+	      currentBean: _this.props.initialBeans[0]
 	    };
 	
 	    return _this;
@@ -22707,7 +22708,6 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	
 	      //console.log('i am proprs', this.props);
 	      //console.log('did mount');
 	    }
@@ -22719,8 +22719,9 @@
 	    }
 	  }, {
 	    key: 'handleBeanListEntryClick',
-	    value: function handleBeanListEntryClick(Bean) {
-	      console.log('clicked');
+	    value: function handleBeanListEntryClick(selectBean) {
+	      this.setState({ currentBean: selectBean });
+	      console.log('after click', selectBean.name);
 	    }
 	  }, {
 	    key: 'render',
@@ -22728,7 +22729,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
-	        _react2.default.createElement(_BeanList2.default, { beans: this.state.beans, clickBean: this.handleBeanListEntryClick.bind(this) })
+	        _react2.default.createElement(_BeanList2.default, {
+	          beans: this.state.beans,
+	          clickBean: this.handleBeanListEntryClick.bind(this) })
 	      );
 	    }
 	  }]);
@@ -22817,7 +22820,7 @@
 	    {
 	      className: "bean-list-entry",
 	      onClick: function onClick() {
-	        return clickBean();
+	        return clickBean(bean);
 	      }
 	    },
 	    _react2.default.createElement(
@@ -22850,7 +22853,7 @@
 	
 	exports.default = BeanListEntry;
 	
-	// {console.log('beanEntry props', props)}
+	// {console.log('beanEntry props', props)}3
 
 /***/ },
 /* 188 */

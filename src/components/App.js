@@ -8,13 +8,13 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      beans: this.props.initialBeans
+      beans: this.props.initialBeans,
+      currentBean: this.props.initialBeans[0]
     };
 
   };
 
   componentDidMount(){
-
     //console.log('i am proprs', this.props);
     //console.log('did mount');
   };
@@ -24,15 +24,17 @@ class App extends React.Component {
 
   };
 
-  handleBeanListEntryClick(Bean) {
-    console.log('clicked');
-
+  handleBeanListEntryClick(selectBean) {
+    this.setState({currentBean: selectBean});
+    console.log('after click', selectBean.name)
   };
 
   render() {
     return(
       <div className="App">
-          <BeanList beans={this.state.beans} clickBean={this.handleBeanListEntryClick.bind(this)}/>
+          <BeanList
+          beans={this.state.beans}
+          clickBean={this.handleBeanListEntryClick.bind(this)}/>
       </div>
     );
   }
