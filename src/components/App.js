@@ -3,6 +3,7 @@ import React from 'react';
 import BeanList from './BeanList';
 import axios from 'axios';
 import beanData from '../exampleBeanData';
+import Header from './Header';
 
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -12,7 +13,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       beans: this.props.initialBeans,
-      currentBean: this.props.initialBeans[0]
+      currentBeanName: "Cofforest",
+      currentBeanId: 0
     };
 
   };
@@ -26,15 +28,22 @@ class App extends React.Component {
     //console.log(this.state.test);
   };
 
-  fetchBean(beanName){
+  fetchBean(bean){
+    var beanName = bean.name;
+    var beanId = bean.id;
     pushState(
       {currentBeanName: beanName},
       `/bean/${beanName}`
     );
+    this.setState({
+      currentBeanName:beanName,
+      currentBeanId:beanId
+    })
   }
 
   handleBeanListEntryClick(selectBean) {
     //this.setState({currentBean: selectBean});
+    selectBean = JSON.parse(selectBean);
     this.fetchBean(selectBean);
     console.log('after click', selectBean)
   };
@@ -42,6 +51,7 @@ class App extends React.Component {
   render() {
     return(
       <div className="App">
+          <Header beanName= {this.state.currentBeanName}/>
           <BeanList
           beans={this.state.beans}
           clickBean={this.handleBeanListEntryClick.bind(this)}/>

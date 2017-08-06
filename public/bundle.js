@@ -22634,15 +22634,15 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var BeanData = [{
+	var BeanData = [{ id: 1,
 	  name: 'Sumatra',
 	  region: 'Indonesia',
 	  description: 'Dark roast'
-	}, {
+	}, { id: 2,
 	  name: 'Costa Rica',
 	  region: 'Costa Rica',
 	  description: 'Dark roast'
-	}, {
+	}, { id: 3,
 	  name: 'Kenya',
 	  region: 'Indonesia',
 	  description: 'Dark roast'
@@ -22681,6 +22681,10 @@
 	
 	var _exampleBeanData2 = _interopRequireDefault(_exampleBeanData);
 	
+	var _Header = __webpack_require__(/*! ./Header */ 214);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22703,7 +22707,8 @@
 	
 	    _this.state = {
 	      beans: _this.props.initialBeans,
-	      currentBean: _this.props.initialBeans[0]
+	      currentBeanName: "Cofforest",
+	      currentBeanId: 0
 	    };
 	
 	    return _this;
@@ -22722,13 +22727,20 @@
 	    }
 	  }, {
 	    key: 'fetchBean',
-	    value: function fetchBean(beanName) {
+	    value: function fetchBean(bean) {
+	      var beanName = bean.name;
+	      var beanId = bean.id;
 	      pushState({ currentBeanName: beanName }, '/bean/' + beanName);
+	      this.setState({
+	        currentBeanName: beanName,
+	        currentBeanId: beanId
+	      });
 	    }
 	  }, {
 	    key: 'handleBeanListEntryClick',
 	    value: function handleBeanListEntryClick(selectBean) {
 	      //this.setState({currentBean: selectBean});
+	      selectBean = JSON.parse(selectBean);
 	      this.fetchBean(selectBean);
 	      console.log('after click', selectBean);
 	    }
@@ -22738,6 +22750,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
+	        _react2.default.createElement(_Header2.default, { beanName: this.state.currentBeanName }),
 	        _react2.default.createElement(_BeanList2.default, {
 	          beans: this.state.beans,
 	          clickBean: this.handleBeanListEntryClick.bind(this) })
@@ -22829,7 +22842,7 @@
 	    {
 	      className: "bean-list-entry",
 	      onClick: function onClick() {
-	        return clickBean(bean.name);
+	        return clickBean(JSON.stringify(bean));
 	      }
 	    },
 	    _react2.default.createElement(
@@ -24404,6 +24417,41 @@
 	    return callback.apply(null, arr);
 	  };
 	};
+
+/***/ },
+/* 214 */
+/*!**********************************!*\
+  !*** ./src/components/Header.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Header = function Header(_ref) {
+	  var beanName = _ref.beanName;
+	
+	  return _react2.default.createElement(
+	    "header",
+	    null,
+	    _react2.default.createElement(
+	      "h1",
+	      { className: "Header text-center" },
+	      beanName
+	    )
+	  );
+	};
+	
+	exports.default = Header;
 
 /***/ }
 /******/ ]);
