@@ -1,27 +1,51 @@
 import express from 'express';
+import { MongoClient } from 'mongodb';
+import assert from 'assert';
+import config from '../config';
+
+
+let mdb;  //global
+MongoClient.connect(config.mongodbUri, (err, db) => {
+  assert.equal(null, err);
+
+  mdb = db;
+});
+
+
 var app = express();
 var router = express.Router();
-import beansList from '../src/exampleBeanData';
 
-var beans = beansList.reduce((obj, cur) => {
-  obj[cur.name] = cur;
-  return obj;
-}, {});
 
-console.log('index', beans);
+let beansData = {}
 
 router.get('/beans', function (req, res) {
-  res.send({test:beans});
+  mdb.collection('Beans').find({})
+    .project({
+      id:1,
+      categoryName:1,
+      beanName:1
+    })
+    .each((err, bean) => {
+      assert.equal(null, err);
+      if (!bean) {
+        console.log(beansData);
+        res.send({test:beansData});
+        return;
+      }
+      beansData[bean.beanName] = bean;
+
+    });
+
 });
 
 
 router.get('/beans/:beanName', function (req, res) {
-  var beanName= req.params.beanName.slice(2);
-  beanName = beanName.slice(0, beanName.length-1);
-  console.log('params', beanName)
-  let bean = beans[req.params.beanName];
 
-  res.send(bean);
+  mdb.collection('Beans')
+    .findOne({beanName: req.params.beanName})
+    .then(bean => res.send(bean))
+    .catch(console.error);
+
 
 });
 

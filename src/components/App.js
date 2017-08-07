@@ -22,9 +22,6 @@ class App extends React.Component {
     this.handleHomePageClick = this.handleHomePageClick.bind(this);
   };
 
-  setInputState(event) {
-    this.setState({ beans: event.target.value });
-  }
 
   componentDidMount(){
     console.log('i am proprs', this.props);
@@ -36,21 +33,23 @@ class App extends React.Component {
   };
 
   fetchBean(bean){
-    var beanName = bean.name;
+    var beanName = bean.beanName;
     var beanId = bean.id;
     pushState(
       {currentBeanName: beanName},
       `/beans/${beanName}`
     );
 
-    api.fetchBean(beanName).then(bean => {
+    api.fetchBean(beanName).then(beann => {
+      console.log('fettttt,', beann)
       this.setState({
-        currentBeanId:bean.id,
-        currentBeanName: beanName,
-        beans:{
+        currentBeanId:beann.id,
+        currentBeanName: beann.beanName,
+        beans: {
           ...this.state.beans,
-          [bean.name]: this.state.beans
+          [bean.beanName]:beann
         }
+
       });
     });
   };
@@ -75,7 +74,8 @@ class App extends React.Component {
     api.fetchBeanList().then( () => {
       this.setState({
         currentBeanName:'Cofforest',
-        currentBeanId:-1
+        currentBeanId:-1,
+        beans:this.props.initialBeans
       });
     });
 

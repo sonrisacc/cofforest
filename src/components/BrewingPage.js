@@ -4,14 +4,17 @@ class Brew extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      beanToBrew: this.props.currentBean.description
+      beanToBrew: this.props.currentBean
     };
   };
 
   render() {
     return(
        <div>
-          <div>{this.state.beanToBrew}</div>
+          <div>{this.state.beanToBrew.weight}</div>
+          <div>{this.state.beanToBrew.waterTemp}</div>
+          <div>{this.state.beanToBrew.grindFineness}</div>
+
           <button className="home-link"
             onClick={() => this.props.clickHome()}>
             Contest List
@@ -25,3 +28,7 @@ class Brew extends React.Component {
 
 
 export default Brew;
+
+
+
+

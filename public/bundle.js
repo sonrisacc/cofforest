@@ -22724,11 +22724,6 @@
 	  }
 	
 	  _createClass(App, [{
-	    key: 'setInputState',
-	    value: function setInputState(event) {
-	      this.setState({ beans: event.target.value });
-	    }
-	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      console.log('i am proprs', this.props);
@@ -22744,15 +22739,17 @@
 	    value: function fetchBean(bean) {
 	      var _this2 = this;
 	
-	      var beanName = bean.name;
+	      var beanName = bean.beanName;
 	      var beanId = bean.id;
 	      pushState({ currentBeanName: beanName }, '/beans/' + beanName);
 	
-	      api.fetchBean(beanName).then(function (bean) {
+	      api.fetchBean(beanName).then(function (beann) {
+	        console.log('fettttt,', beann);
 	        _this2.setState({
-	          currentBeanId: bean.id,
-	          currentBeanName: beanName,
-	          beans: _extends({}, _this2.state.beans, _defineProperty({}, bean.name, _this2.state.beans))
+	          currentBeanId: beann.id,
+	          currentBeanName: beann.beanName,
+	          beans: _extends({}, _this2.state.beans, _defineProperty({}, bean.beanName, beann))
+	
 	        });
 	      });
 	    }
@@ -22774,7 +22771,8 @@
 	      api.fetchBeanList().then(function () {
 	        _this3.setState({
 	          currentBeanName: 'Cofforest',
-	          currentBeanId: -1
+	          currentBeanId: -1,
+	          beans: _this3.props.initialBeans
 	        });
 	      });
 	    }
@@ -22849,13 +22847,14 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'bean-list' },
+	    console.log('memememmeem', beans),
 	    _react2.default.createElement(
 	      'div',
 	      null,
-	      Object.keys(beans).map(function (beanId) {
+	      Object.keys(beans).map(function (beanName) {
 	        return _react2.default.createElement(_BeanListEntry2.default, {
-	          key: beanId,
-	          bean: beans[beanId],
+	          key: beanName,
+	          bean: beans[beanName],
 	          clickBean: clickBean
 	        });
 	      })
@@ -22903,23 +22902,28 @@
 	      _react2.default.createElement(
 	        "h2",
 	        { className: "iname" },
-	        bean.name
-	      ),
-	      _react2.default.createElement(
-	        "h3",
-	        { className: "iregion" },
-	        bean.region
+	        bean.beanName
 	      ),
 	      _react2.default.createElement(
 	        "h4",
-	        { className: "idescription" },
+	        { className: "icategoryName" },
 	        " ",
-	        bean.description
+	        bean.categoryName
 	      ),
 	      _react2.default.createElement(
 	        "p",
 	        { className: "iparagraph" },
-	        "\"hey\""
+	        bean.weight
+	      ),
+	      _react2.default.createElement(
+	        "p",
+	        { className: "iparagraph" },
+	        bean.grindFineness
+	      ),
+	      _react2.default.createElement(
+	        "p",
+	        { className: "iparagraph" },
+	        bean.waterTemp
 	      )
 	    )
 	  );
@@ -22950,7 +22954,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var fetchBean = exports.fetchBean = function fetchBean(beanName) {
-	  return _axios2.default.get('/api/beans/${beanName}').then(function (res) {
+	  console.log('pppppp', beanName);
+	  return _axios2.default.get('/api/beans/' + beanName).then(function (res) {
 	    return res.data;
 	  });
 	};
@@ -24580,7 +24585,7 @@
 	    var _this = _possibleConstructorReturn(this, (Brew.__proto__ || Object.getPrototypeOf(Brew)).call(this, props));
 	
 	    _this.state = {
-	      beanToBrew: _this.props.currentBean.description
+	      beanToBrew: _this.props.currentBean
 	    };
 	    return _this;
 	  }
@@ -24596,7 +24601,17 @@
 	        _react2.default.createElement(
 	          "div",
 	          null,
-	          this.state.beanToBrew
+	          this.state.beanToBrew.weight
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          this.state.beanToBrew.waterTemp
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          this.state.beanToBrew.grindFineness
 	        ),
 	        _react2.default.createElement(
 	          "button",

@@ -6,10 +6,11 @@ const BeanListEntry = ({bean, clickBean}) => (
     onClick={() => clickBean(JSON.stringify(bean))}
     >
     <div id="content" className="bean-name">
-      <h2 className="iname">{bean.name}</h2>
-      <h3 className="iregion">{bean.region}</h3>
-      <h4 className="idescription"> {bean.description}</h4>
-      <p className="iparagraph">"hey"</p>
+      <h2 className="iname">{bean.beanName}</h2>
+      <h4 className="icategoryName"> {bean.categoryName}</h4>
+      <p className="iparagraph">{bean.weight}</p>
+      <p className="iparagraph">{bean.grindFineness}</p>
+      <p className="iparagraph">{bean.waterTemp}</p>
     </div>
 
   </div>
