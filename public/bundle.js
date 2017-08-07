@@ -24467,7 +24467,6 @@
 	    )
 	  );
 	};
-	
 	exports.default = Header;
 
 /***/ },

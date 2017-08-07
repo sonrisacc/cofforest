@@ -9,7 +9,7 @@ import App from './src/components/App';
 
 //pre-render react
 const serverRender = () =>
-  axios.get(`${config.serverUrl}/main`)
+  axios.get(`${config.serverUrl}/api/beans`)
     .then(res => {
       console.log('requestHandler res data', res.data);
       return {

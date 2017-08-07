@@ -1,13 +1,11 @@
 import config from './config';
-import express from 'express';
-//import router from './api/router';
+import apiRouter from './api/index';
 
 import http from 'http';
 import beans from './src/exampleBeanData';
 import urlParser from 'url';
 
-
-
+import express from 'express';
 const server = express();
 
 
@@ -18,7 +16,7 @@ server.set('view engine', 'ejs');
 import serverRender from './requestHandler';
 
 
-server.get(['/', '/bean/:beanId'], (req, res) => {
+server.get(['/', '/beans/:beanName'], (req, res) => {
   serverRender()
   .then(({initialBeanList, initialData}) => {
     res.render('index', {
@@ -30,15 +28,13 @@ server.get(['/', '/bean/:beanId'], (req, res) => {
 
 });
 
-//['/', '/bean/:beanId']
 
-server.get('/main', (req, res) => {
-  res.send({test:beans})
-});
-
+// server.get('/main', (req, res) => {
+//   res.send({test:beans})
+// });
 
 
-//server.use('/api/router', router);
+server.use('/api',apiRouter);
 server.use(express.static('public'));
 
 

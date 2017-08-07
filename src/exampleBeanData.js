@@ -1,4 +1,4 @@
-var BeanData = [
+const BeanData = [
   { id:1,
     name: 'Sumatra',
     region: 'Indonesia',

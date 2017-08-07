@@ -10,6 +10,4 @@ const Header = ({beanName}) => {
   );
 
 }
-
-
 export default Header;
