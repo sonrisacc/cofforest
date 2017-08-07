@@ -4,10 +4,10 @@ import BeanListEntry from './BeanListEntry';
 
 const BeanList = ({beans, clickBean}) => (
   <div className="bean-list">
-     <div>{beans.map((bean, index) =>
+     <div>{Object.keys(beans).map((beanId) =>
         <BeanListEntry
-          key={index}
-          bean={bean}
+          key={beanId}
+          bean={beans[beanId]}
           clickBean={clickBean}
           />)}
      </div>

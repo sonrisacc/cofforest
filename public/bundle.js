@@ -22817,10 +22817,10 @@
 	    _react2.default.createElement(
 	      'div',
 	      null,
-	      beans.map(function (bean, index) {
+	      Object.keys(beans).map(function (beanId) {
 	        return _react2.default.createElement(_BeanListEntry2.default, {
-	          key: index,
-	          bean: bean,
+	          key: beanId,
+	          bean: beans[beanId],
 	          clickBean: clickBean
 	        });
 	      })
