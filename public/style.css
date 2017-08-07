@@ -128,3 +128,8 @@ header, #content, #middle, #sidebar {
 #pagewrap, header, #content, #middle, #sidebar, footer {
   border: solid 1px #ccc;
 }
+
+.home-link {
+  margin-top: 1em;
+  color: #0000ee;
+}

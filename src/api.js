@@ -5,3 +5,18 @@ export const fetchBean = (beanName) => {
               .then(res =>res.data);
 };
 
+
+export const fetchBeanList = () => {
+  console.log('heyyy')
+  return axios.get('/api/beans')
+              .then(res =>res.data);
+};
+
+
+
+ // api.fetchBeanList().then(beans => {
+ //      this.setState({
+ //        currentBeanId:-1,
+ //        beans: beans
+ //      });
+ //    });

@@ -6,6 +6,7 @@ import * as api from '../api';
 import Header from './Header';
 import BrewingPage from './BrewingPage';
 
+
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
 
@@ -18,8 +19,12 @@ class App extends React.Component {
       currentBeanName: "Cofforest",
       currentBeanId: -1
     };
-
+    this.handleHomePageClick = this.handleHomePageClick.bind(this);
   };
+
+  setInputState(event) {
+    this.setState({ beans: event.target.value });
+  }
 
   componentDidMount(){
     console.log('i am proprs', this.props);
@@ -40,19 +45,16 @@ class App extends React.Component {
 
     api.fetchBean(beanName).then(bean => {
       this.setState({
-
         currentBeanId:bean.id,
         currentBeanName: beanName,
         beans:{
           ...this.state.beans,
           [bean.name]: this.state.beans
         }
-
       });
-
     });
-
   };
+
 
   handleBeanListEntryClick(selectBean) {
     //this.setState({currentBean: selectBean});
@@ -62,6 +64,29 @@ class App extends React.Component {
   };
 
 
+
+
+  handleHomePageClick(){
+    pushState(
+      {currentBeanId: -1},
+      `/`
+    );
+
+    console.log('a')
+
+    this.setState({
+      currentBeanName:'Cofforest',
+      currentBeanId:-1
+    });
+
+
+  };
+
+
+  currentBean(){
+    return this.state.beans[this.state.currentBeanName];
+  };
+
   currentContent() {
     const contentToggle= this.state.currentBeanId === -1;
     console.log(contentToggle);
@@ -70,7 +95,9 @@ class App extends React.Component {
           beans={this.state.beans}
           clickBean={this.handleBeanListEntryClick.bind(this)}/>
     } else {
-      return <BrewingPage currentBean={this.state.beans[this.state.currentBeanName]}/>
+      return <BrewingPage
+        currentBean={this.currentBean()}
+        clickHome={this.handleHomePageClick}/>
     }
   };
 

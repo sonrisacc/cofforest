@@ -22719,11 +22719,16 @@
 	      currentBeanName: "Cofforest",
 	      currentBeanId: -1
 	    };
-	
+	    _this.handleHomePageClick = _this.handleHomePageClick.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(App, [{
+	    key: 'setInputState',
+	    value: function setInputState(event) {
+	      this.setState({ beans: event.target.value });
+	    }
+	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      console.log('i am proprs', this.props);
@@ -22745,11 +22750,9 @@
 	
 	      api.fetchBean(beanName).then(function (bean) {
 	        _this2.setState({
-	
 	          currentBeanId: bean.id,
 	          currentBeanName: beanName,
 	          beans: _extends({}, _this2.state.beans, _defineProperty({}, bean.name, _this2.state.beans))
-	
 	        });
 	      });
 	    }
@@ -22762,6 +22765,23 @@
 	      console.log('after click', selectBean);
 	    }
 	  }, {
+	    key: 'handleHomePageClick',
+	    value: function handleHomePageClick() {
+	      pushState({ currentBeanId: -1 }, '/');
+	
+	      console.log('a');
+	
+	      this.setState({
+	        currentBeanName: 'Cofforest',
+	        currentBeanId: -1
+	      });
+	    }
+	  }, {
+	    key: 'currentBean',
+	    value: function currentBean() {
+	      return this.state.beans[this.state.currentBeanName];
+	    }
+	  }, {
 	    key: 'currentContent',
 	    value: function currentContent() {
 	      var contentToggle = this.state.currentBeanId === -1;
@@ -22771,7 +22791,9 @@
 	          beans: this.state.beans,
 	          clickBean: this.handleBeanListEntryClick.bind(this) });
 	      } else {
-	        return _react2.default.createElement(_BrewingPage2.default, { currentBean: this.state.beans[this.state.currentBeanName] });
+	        return _react2.default.createElement(_BrewingPage2.default, {
+	          currentBean: this.currentBean(),
+	          clickHome: this.handleHomePageClick });
 	      }
 	    }
 	  }, {
@@ -22917,7 +22939,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchBean = undefined;
+	exports.fetchBeanList = exports.fetchBean = undefined;
 	
 	var _axios = __webpack_require__(/*! axios */ 189);
 	
@@ -22930,6 +22952,20 @@
 	    return res.data;
 	  });
 	};
+	
+	var fetchBeanList = exports.fetchBeanList = function fetchBeanList() {
+	  console.log('heyyy');
+	  return _axios2.default.get('/api/beans').then(function (res) {
+	    return res.data;
+	  });
+	};
+	
+	// api.fetchBeanList().then(beans => {
+	//      this.setState({
+	//        currentBeanId:-1,
+	//        beans: beans
+	//      });
+	//    });
 
 /***/ },
 /* 189 */
@@ -24513,7 +24549,7 @@
   \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -24548,12 +24584,26 @@
 	  }
 	
 	  _createClass(Brew, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
-	        'h1',
+	        "div",
 	        null,
-	        this.state.beanToBrew
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          this.state.beanToBrew
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { className: "home-link",
+	            onClick: function onClick() {
+	              return _this2.props.clickHome();
+	            } },
+	          "Contest List"
+	        )
 	      );
 	    }
 	  }]);

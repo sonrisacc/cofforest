@@ -10,9 +10,15 @@ class Brew extends React.Component {
 
   render() {
     return(
-      <h1 >{this.state.beanToBrew}</h1>
-      )
-  }
+       <div>
+          <div>{this.state.beanToBrew}</div>
+          <button className="home-link"
+            onClick={() => this.props.clickHome()}>
+            Contest List
+          </button>
+       </div>
+    )
+  };
 
 
 }
