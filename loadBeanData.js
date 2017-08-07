@@ -12,7 +12,6 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
       waterTemp: '203F',
       weight:'28g',
       grindFineness:'medium coarse',
-      ,
       regionIds: [101] },
     { id: 2,
       categoryName: 'medRoast',
@@ -20,7 +19,6 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
       waterTemp: '205F',
       weight:'25g',
       grindFineness:'medium coarse',
-      ,
       regionIds: [102] },
     { id: 2,
       categoryName: 'lightRoast',
@@ -28,7 +26,6 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
       waterTemp: '208F',
       weight:'23g',
       grindFineness:'medium coarse',
-      ,
       regionIds: [103] },
     { id: 2,
       categoryName: 'lightRoast',
@@ -36,7 +33,6 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
       waterTemp: '200F',
       weight:'25g',
       grindFineness:'medium coarse',
-      ,
       regionIds: [104] },
 
 
