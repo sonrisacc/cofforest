@@ -35,7 +35,7 @@ class App extends React.Component {
     var beanId = bean.id;
     pushState(
       {currentBeanName: beanName},
-      `/bean/${beanName}`
+      `/beans/${beanName}`
     );
 
     api.fetchBean(beanName).then(bean => {

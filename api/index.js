@@ -16,7 +16,9 @@ router.get('/beans', function (req, res) {
 
 
 router.get('/beans/:beanName', function (req, res) {
- // console.log('params', req.params)
+  var beanName= req.params.beanName.slice(2);
+  beanName = beanName.slice(0, beanName.length-1);
+  console.log('params', beanName)
   let bean = beans[req.params.beanName];
 
   res.send(bean);
