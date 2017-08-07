@@ -22685,6 +22685,10 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
+	var _BrewingPage = __webpack_require__(/*! ./BrewingPage */ 215);
+	
+	var _BrewingPage2 = _interopRequireDefault(_BrewingPage);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22707,8 +22711,9 @@
 	
 	    _this.state = {
 	      beans: _this.props.initialBeans,
+	      currentBean: {},
 	      currentBeanName: "Cofforest",
-	      currentBeanId: 0
+	      currentBeanId: -1
 	    };
 	
 	    return _this;
@@ -22732,6 +22737,7 @@
 	      var beanId = bean.id;
 	      pushState({ currentBeanName: beanName }, '/bean/' + beanName);
 	      this.setState({
+	        currentBean: bean,
 	        currentBeanName: beanName,
 	        currentBeanId: beanId
 	      });
@@ -22745,15 +22751,26 @@
 	      console.log('after click', selectBean);
 	    }
 	  }, {
+	    key: 'currentContent',
+	    value: function currentContent() {
+	      var contentToggle = this.state.currentBeanId === -1;
+	      console.log(contentToggle);
+	      if (contentToggle) {
+	        return _react2.default.createElement(_BeanList2.default, {
+	          beans: this.state.beans,
+	          clickBean: this.handleBeanListEntryClick.bind(this) });
+	      } else {
+	        return _react2.default.createElement(_BrewingPage2.default, { currentBean: this.state.currentBean });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
 	        _react2.default.createElement(_Header2.default, { beanName: this.state.currentBeanName }),
-	        _react2.default.createElement(_BeanList2.default, {
-	          beans: this.state.beans,
-	          clickBean: this.handleBeanListEntryClick.bind(this) })
+	        this.currentContent()
 	      );
 	    }
 	  }]);
@@ -24452,6 +24469,36 @@
 	};
 	
 	exports.default = Header;
+
+/***/ },
+/* 215 */
+/*!***************************************!*\
+  !*** ./src/components/BrewingPage.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Brew = function Brew(_ref) {
+	  var currentBean = _ref.currentBean;
+	
+	  return _react2.default.createElement(
+	    'h1',
+	    null,
+	    'hey'
+	  );
+	};
+	exports.default = Brew;
 
 /***/ }
 /******/ ]);

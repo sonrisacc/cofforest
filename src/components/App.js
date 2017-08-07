@@ -4,6 +4,7 @@ import BeanList from './BeanList';
 import axios from 'axios';
 import beanData from '../exampleBeanData';
 import Header from './Header';
+import BrewingPage from './BrewingPage';
 
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -13,8 +14,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       beans: this.props.initialBeans,
+      currentBean: {},
       currentBeanName: "Cofforest",
-      currentBeanId: 0
+      currentBeanId: -1
     };
 
   };
@@ -36,6 +38,7 @@ class App extends React.Component {
       `/bean/${beanName}`
     );
     this.setState({
+      currentBean:bean,
       currentBeanName:beanName,
       currentBeanId:beanId
     })
@@ -48,13 +51,25 @@ class App extends React.Component {
     console.log('after click', selectBean)
   };
 
+
+  currentContent() {
+    const contentToggle= this.state.currentBeanId === -1;
+    console.log(contentToggle);
+    if(contentToggle){
+      return  <BeanList
+          beans={this.state.beans}
+          clickBean={this.handleBeanListEntryClick.bind(this)}/>
+    } else {
+      return <BrewingPage currentBean={this.state.currentBean}/>
+    }
+  };
+
   render() {
     return(
       <div className="App">
           <Header beanName= {this.state.currentBeanName}/>
-          <BeanList
-          beans={this.state.beans}
-          clickBean={this.handleBeanListEntryClick.bind(this)}/>
+          {this.currentContent()}
+
       </div>
     );
   }
