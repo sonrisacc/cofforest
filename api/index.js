@@ -4,7 +4,7 @@ var router = express.Router();
 import beansList from '../src/exampleBeanData';
 
 var beans = beansList.reduce((obj, cur) => {
-  obj[cur.id] = cur;
+  obj[cur.name] = cur;
   return obj;
 }, {});
 
@@ -15,10 +15,10 @@ router.get('/beans', function (req, res) {
 });
 
 
-router.get('/beans/:beanId', function (req, res) {
+router.get('/beans/:beanName', function (req, res) {
  // console.log('params', req.params)
-  let bean = beans[req.params.beanId];
-  bean.brew= 'heyheyIm working now';
+  let bean = beans[req.params.beanName];
+
   res.send(bean);
 
 });

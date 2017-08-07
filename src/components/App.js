@@ -1,8 +1,8 @@
 
 import React from 'react';
 import BeanList from './BeanList';
-import axios from 'axios';
-import beanData from '../exampleBeanData';
+import * as api from '../api';
+//import beanData from '../exampleBeanData';
 import Header from './Header';
 import BrewingPage from './BrewingPage';
 
@@ -37,12 +37,22 @@ class App extends React.Component {
       {currentBeanName: beanName},
       `/bean/${beanName}`
     );
-    this.setState({
-      currentBean:bean,
-      currentBeanName:beanName,
-      currentBeanId:beanId
-    })
-  }
+
+    api.fetchBean(beanName).then(bean => {
+      this.setState({
+
+        currentBeanId:bean.id,
+        currentBeanName: beanName,
+        beans:{
+          ...this.state.beans,
+          [bean.name]: this.state.beans
+        }
+
+      });
+
+    });
+
+  };
 
   handleBeanListEntryClick(selectBean) {
     //this.setState({currentBean: selectBean});
@@ -60,7 +70,7 @@ class App extends React.Component {
           beans={this.state.beans}
           clickBean={this.handleBeanListEntryClick.bind(this)}/>
     } else {
-      return <BrewingPage currentBean={this.state.currentBean}/>
+      return <BrewingPage currentBean={this.state.beans[this.state.currentBeanName]}/>
     }
   };
 

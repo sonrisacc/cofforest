@@ -1,13 +1,21 @@
 import React from 'react';
 
-const Brew = ({currentBean}) => {
-  return (
+class Brew extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      beanToBrew: this.props.currentBean.description
+    };
+  };
 
-    <h1 >
-      hey
-   </h1>
+  render() {
+    return(
+      <h1 >{this.state.beanToBrew}</h1>
+      )
+  }
 
-  );
 
 }
+
+
 export default Brew;

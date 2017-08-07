@@ -22663,6 +22663,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -22673,13 +22675,9 @@
 	
 	var _BeanList2 = _interopRequireDefault(_BeanList);
 	
-	var _axios = __webpack_require__(/*! axios */ 188);
+	var _api = __webpack_require__(/*! ../api */ 216);
 	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	var _exampleBeanData = __webpack_require__(/*! ../exampleBeanData */ 184);
-	
-	var _exampleBeanData2 = _interopRequireDefault(_exampleBeanData);
+	var api = _interopRequireWildcard(_api);
 	
 	var _Header = __webpack_require__(/*! ./Header */ 214);
 	
@@ -22689,13 +22687,19 @@
 	
 	var _BrewingPage2 = _interopRequireDefault(_BrewingPage);
 	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	//import beanData from '../exampleBeanData';
+	
 	
 	var pushState = function pushState(obj, url) {
 	  return window.history.pushState(obj, '', url);
@@ -22733,13 +22737,20 @@
 	  }, {
 	    key: 'fetchBean',
 	    value: function fetchBean(bean) {
+	      var _this2 = this;
+	
 	      var beanName = bean.name;
 	      var beanId = bean.id;
 	      pushState({ currentBeanName: beanName }, '/bean/' + beanName);
-	      this.setState({
-	        currentBean: bean,
-	        currentBeanName: beanName,
-	        currentBeanId: beanId
+	
+	      api.fetchBean(beanName).then(function (bean) {
+	        _this2.setState({
+	
+	          currentBeanId: bean.id,
+	          currentBeanName: beanName,
+	          beans: _extends({}, _this2.state.beans, _defineProperty({}, bean.name, _this2.state.beans))
+	
+	        });
 	      });
 	    }
 	  }, {
@@ -22760,7 +22771,7 @@
 	          beans: this.state.beans,
 	          clickBean: this.handleBeanListEntryClick.bind(this) });
 	      } else {
-	        return _react2.default.createElement(_BrewingPage2.default, { currentBean: this.state.currentBean });
+	        return _react2.default.createElement(_BrewingPage2.default, { currentBean: this.state.beans[this.state.currentBeanName] });
 	      }
 	    }
 	  }, {
@@ -24482,22 +24493,75 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Brew = function Brew(_ref) {
-	  var currentBean = _ref.currentBean;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	  return _react2.default.createElement(
-	    'h1',
-	    null,
-	    'hey'
-	  );
-	};
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Brew = function (_React$Component) {
+	  _inherits(Brew, _React$Component);
+	
+	  function Brew(props) {
+	    _classCallCheck(this, Brew);
+	
+	    var _this = _possibleConstructorReturn(this, (Brew.__proto__ || Object.getPrototypeOf(Brew)).call(this, props));
+	
+	    _this.state = {
+	      beanToBrew: _this.props.currentBean.description
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(Brew, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'h1',
+	        null,
+	        this.state.beanToBrew
+	      );
+	    }
+	  }]);
+	
+	  return Brew;
+	}(_react2.default.Component);
+	
 	exports.default = Brew;
+
+/***/ },
+/* 216 */
+/*!********************!*\
+  !*** ./src/api.js ***!
+  \********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchBean = undefined;
+	
+	var _axios = __webpack_require__(/*! axios */ 188);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var fetchBean = exports.fetchBean = function fetchBean(beanName) {
+	  return _axios2.default.get('/api/beans/${beanName}').then(function (res) {
+	    return res.data;
+	  });
+	};
 
 /***/ }
 /******/ ]);
