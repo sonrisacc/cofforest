@@ -72,11 +72,11 @@ class App extends React.Component {
       `/`
     );
 
-    console.log('a')
-
-    this.setState({
-      currentBeanName:'Cofforest',
-      currentBeanId:-1
+    api.fetchBeanList().then( () => {
+      this.setState({
+        currentBeanName:'Cofforest',
+        currentBeanId:-1
+      });
     });
 
 

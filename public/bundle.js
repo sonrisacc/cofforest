@@ -22767,13 +22767,15 @@
 	  }, {
 	    key: 'handleHomePageClick',
 	    value: function handleHomePageClick() {
+	      var _this3 = this;
+	
 	      pushState({ currentBeanId: -1 }, '/');
 	
-	      console.log('a');
-	
-	      this.setState({
-	        currentBeanName: 'Cofforest',
-	        currentBeanId: -1
+	      api.fetchBeanList().then(function () {
+	        _this3.setState({
+	          currentBeanName: 'Cofforest',
+	          currentBeanId: -1
+	        });
 	      });
 	    }
 	  }, {
